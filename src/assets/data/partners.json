@@ -1,22 +1,47 @@
 {
   "General Partners": [
     {
-      "name": "Google Developers",
-      "link": "https://developers.google.com/groups",
-      "img": "googledevs.webp"
+      "name": "Centers for Medicare and Medicaid Services",
+      "link": "https://www.cms.gov/",
+      "img": "cms-logo.svg"
     },
     {
-      "name": "GDG",
+      "name": "CDC",
       "link": "https://developers.google.com/groups",
       "img": "gdglogo.webp"
     },
     {
-      "name": "WomenTechmakers",
+      "name": "Defense Information Systems Agency",
       "link": "https://www.womentechmakers.com/",
       "img": "wtm.svg"
     },
     {
-      "name": "GDG[x]",
+      "name": "The SIMP Project",
+      "link": "https://github.com/gdg-x",
+      "img": "gdg-x.svg"
+    },
+    {
+      "name": "Army G2",
+      "link": "https://github.com/gdg-x",
+      "img": "gdg-x.svg"
+    },
+    {
+      "name": "NRO",
+      "link": "https://github.com/gdg-x",
+      "img": "gdg-x.svg"
+    },
+    {
+      "name": "The SIMP Project",
+      "link": "https://github.com/gdg-x",
+      "img": "gdg-x.svg"
+    },
+    {
+      "name": "Army G2",
+      "link": "https://github.com/gdg-x",
+      "img": "gdg-x.svg"
+    },
+    {
+      "name": "NRO",
       "link": "https://github.com/gdg-x",
       "img": "gdg-x.svg"
     }
