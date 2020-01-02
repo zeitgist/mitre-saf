@@ -75,7 +75,7 @@ export default new Vuex.Store({
         icon: "mdi-chair-school",
         meta: {
           showToolbar: true,
-          enabled: true,
+          enabled: false,
           showBottomNav: true
         }
       } 

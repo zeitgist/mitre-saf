@@ -13,7 +13,7 @@
             :href="`mailto:${communityData.communityEmail}`"
           >{{communityData.communityEmail}}</a>
         </p>
-        <!-- <p class="google-font mt-4 mb-3" style="font-size:130%">
+        <!--<p class="google-font mt-4 mb-3" style="font-size:130%">
           Follow Us:
           <span v-for="(item,i) in communityData.SocialLinks" :key="i">
             <v-tooltip top>
@@ -25,11 +25,8 @@
               <span>{{item.name}}</span>
             </v-tooltip>
           </span>
-        </p> -->
+        </p>-->
       </v-col>
-      <!-- <v-col md="3" sm="6" cols="12" class="py-0 my-0">
-        <img :src="require('@/assets/img/svg/contact.svg')" style="float:right" width="80%" alt />
-      </v-col> -->
     </v-row>
   </v-container>
 </template>
