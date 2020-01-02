@@ -68,7 +68,17 @@ export default new Vuex.Store({
           enabled: true,
           showBottomNav: true
         }
-      }
+      },
+      {
+        text: "Contact",
+        to: "/contact",
+        icon: "mdi-chair-school",
+        meta: {
+          showToolbar: true,
+          enabled: true,
+          showBottomNav: true
+        }
+      } 
     ],
     adminDrawer: true,
     adminLinks: [
