@@ -40,7 +40,7 @@
   "videos": [
     {
       "name": "Inspec: Human Readable, Automated Compliance",
-      "link": "https://www.youtube.com/embed/IaUjpJ5SUAA"
+      "link": "@/assets/data/test.mp4"
     },
     {
       "name": "Inspec: Human Readable, Automated Compliance",

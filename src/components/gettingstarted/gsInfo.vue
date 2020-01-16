@@ -28,7 +28,7 @@
       <template v-for="item in resources.videos">
         <v-list-item :key="item.name">
           <v-list-item-content>
-            <iframe :src="item.link"></iframe>
+            <video width="450" controls :src="item.link"></video>
           </v-list-item-content>
         </v-list-item>
       </template>
