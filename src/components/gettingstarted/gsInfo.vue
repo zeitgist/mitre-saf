@@ -24,16 +24,9 @@
         </v-list-item>
       </template>
     </v-list>
-    <v-list two-line>
-      <template v-for="item in resources.videos">
-        <v-list-item :key="item.name">
-          <v-list-item-content>
-            <video width="450" controls :src="item.link"></video>
-          </v-list-item-content>
-        </v-list-item>
-      </template>
-    </v-list>
-    <br />
+    <video controls width="500">
+      <source src="@/assets/data/test.mp4" type="video/mp4" />
+    </video>
   </v-container>
 </template>
 
