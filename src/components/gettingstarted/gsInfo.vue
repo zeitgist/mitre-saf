@@ -24,9 +24,18 @@
         </v-list-item>
       </template>
     </v-list>
-    <video controls width="500">
-      <source src="@/assets/data/test.mp4" type="video/mp4" />
-    </video>
+    <p class="google-font mb-0" style="font-size:150%;color: #1a73e8;">Introduction to Inspec Videos</p>
+    <v-row v-for="entry in trainingData.pastTraining.introTraining" :key="entry">
+      <v-col cols="auto">
+        <v-card flat>
+          <v-card-title>{{entry.name}}</v-card-title>
+          <v-card-subtitle>{{entry.date}}</v-card-subtitle>
+          <video controls width="500">
+            <source src="@/assets/data/test.mp4" type="video/mp4" />
+          </video>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
