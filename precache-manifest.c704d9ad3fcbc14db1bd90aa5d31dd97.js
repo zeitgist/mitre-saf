@@ -432,6 +432,10 @@ self.__precacheManifest = [
     "url": "/mitre-saf/_redirects"
   },
   {
+    "revision": "be4334776bc1c39caf2b2c02007fc315",
+    "url": "/mitre-saf/CNAME"
+  },
+  {
     "revision": "b2174230811e6edd524d5c338620a264",
     "url": "/mitre-saf/img/mitrelogo-whiteonblue.jpg"
   },
