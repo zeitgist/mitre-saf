@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "66b436a9c03a0e2b726a",
-    "url": "/css/app.291cabe7.css"
+    "revision": "2f497a3248b4e7b63394",
+    "url": "/css/app.67b17881.css"
   },
   {
-    "revision": "66b436a9c03a0e2b726a",
-    "url": "/js/app.3312fa63.js"
+    "revision": "2f497a3248b4e7b63394",
+    "url": "/js/app.3c991b78.js"
   },
   {
     "revision": "8cb4feafc0ea16485c60",
@@ -164,10 +164,6 @@ self.__precacheManifest = [
     "url": "/img/jacob-henry.777debb2.png"
   },
   {
-    "revision": "5198d5d81b2c33f9cf258a64b6a03f03",
-    "url": "/img/desc.5198d5d8.svg"
-  },
-  {
     "revision": "9ed3b7669abed32a871a12f06740ddd9",
     "url": "/img/nessus.9ed3b766.png"
   },
@@ -236,10 +232,6 @@ self.__precacheManifest = [
     "url": "/img/CMS.9efce66e.png"
   },
   {
-    "revision": "ca7f75ce6245d89b0cee557ea22c9749",
-    "url": "/img/github.ca7f75ce.svg"
-  },
-  {
     "revision": "86c05650c0b96d90b52b991c403d0ce2",
     "url": "/img/luke-malinowski.86c05650.png"
   },
@@ -302,10 +294,6 @@ self.__precacheManifest = [
   {
     "revision": "6daa0e92a75bdd0887675360b257cc4a",
     "url": "/img/robert-thew.6daa0e92.png"
-  },
-  {
-    "revision": "8d5c69a13689be3eedc5b941642c5d16",
-    "url": "/img/app.8d5c69a1.svg"
   },
   {
     "revision": "48ae79d99d69739a8022593da1ece32f",
@@ -436,7 +424,7 @@ self.__precacheManifest = [
     "url": "/img/Army.6f6cb924.png"
   },
   {
-    "revision": "c9597ef11e917a5942e1ddff7007a274",
+    "revision": "ca733ff6ffac3af2d24062e46eab23b1",
     "url": "/index.html"
   },
   {
