@@ -8,19 +8,19 @@
   */
 
 /*
-  text search on first column
-  columns = select
-  click column = on/off/all
+  ~~text search on first column
+  ~~columns = select
+  ~~click column = on/off/all
   cosmetics:
     zebra stripe for shading for columns
     wrapping for column headers (no ...s)
     pinstriping/borders on all cells
-    swap out the true for inspec/list of 3 things, checkbox and blank for all
+    swap out the true for inspec/list of 3 things
+    ~~checkbox and blank for all
     light + dark mode
 */
 <template>
 <div class="wrapper" >
-
   <v-container >
     <v-row>
       <v-col>
@@ -33,8 +33,8 @@
     </v-row>
   </v-container>
   <c-grid class="table ma-0" :data="data" :frozen-col-count="2" :theme="this.$vuetify.theme.dark ? userTheme : ''" :underlay-background-color="this.$vuetify.theme.dark ? 'black' : 'white'">
-    <c-grid-column-group v-for="(col, index) in columns" :key="col.value" :caption="col.text">
-      <c-grid-column :field="col.value" :caption="index >= 1 ? data.filter(control => control[col.value]).length.toString() : ''" :width="col.width"/>
+    <c-grid-column-group v-for="(col, index) in columns" :key="col.value" :header-field="col.value" :caption="col.text" :header-action="'check'" @changed-header-value="onChangeHeaderValue">
+      <c-grid-column :field="col.value" :caption="index >= 0 ? data.filter(control => control[col.value]).length.toString() : ''" :width="col.width" :column-type="col.type"/>
     </c-grid-column-group>
   </c-grid>
 </div>
@@ -76,8 +76,8 @@ export default {
       columns: 'getColumns',
       controls: 'getControls',
       profiles: 'getProfiles',
-      getControlsFilter: 'getControlFilters',
-      getProfilesFilter: 'getProfilesFilters',
+      getControlFilters: 'getControlFilters',
+      getProfileFilters: 'getProfileFilters',
     }),
     controlFilters: {
       get() {
@@ -102,13 +102,17 @@ export default {
     ...mapMutations({
       setControlFilters: 'setControlFilters',
       setProfileFilters: 'setProfileFilters',
+      updateColumnFilters: 'updateColumnFilters',
     }),
     caselessFilter(item, queryText, itemText) {
       if(item.header) {
         return false;
       }
       return itemText.toLowerCase().includes(queryText.toLowerCase());
-    }
+    },
+    onChangeHeaderValue({field}) {
+      this.updateColumnFilters(field);
+    },
   }
 };
 </script>

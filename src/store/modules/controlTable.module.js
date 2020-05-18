@@ -5,6 +5,12 @@ import json from "@/assets/data/mitre-saf-control-mapping.json";
 const state = {
   controlFilters: [],
   profileFilters: [],
+  columnFilters: Object.keys(json[0]).filter(col => col !== 'NIST SP 800-53 Control').reduce((acc, cur) => { // rename to something that makes more sense
+    return {
+      ...acc,
+      [cur]: 0, // 0=all, 1=on, 2=off
+    };
+  }, {}),
   data: json,
 };
 
@@ -21,13 +27,23 @@ const getters = {
   getProfileFilters: state => {
     return state.profileFilters;
   },
+  getColumnFilters: state => {
+    return state.columnFilters;
+  },
   getData: state => {
-    const filters = getters.getControlFilters(state);
-    if(filters.length){
-      return state.data.filter(row => filters.some(filter => row['NIST SP 800-53 Control'].toLowerCase().includes(filter.toLowerCase())));
-    } else {
-      return state.data;
+    let data = state.data;
+
+    const controlFilters = getters.getControlFilters(state);
+    if(controlFilters.length){
+      data = data.filter(row => controlFilters.some(filter => row['NIST SP 800-53 Control'].toLowerCase().includes(filter.toLowerCase())));
     }
+
+    const colFilters = getters.getColumnFilters(state);
+    for(let col of Object.keys(colFilters)) {
+      data = data.filter(row => colFilters[col] === 0  || (colFilters[col] === 1 && row[col]) || (colFilters[col] === 2 && !row[col]));
+    }
+
+    return data;
   },
   getColumns: state => {
     const filters = getters.getProfileFilters(state);
@@ -39,11 +55,18 @@ const getters = {
     const columnWidth = 100;
     let columns = [];
     for(let column of columnheaders) {
-      columns.push({ text: column, value: column, align: "center", width: columnWidth });
+      columns.push({ text: ["☒", "☑", "☐"][getters.getColumnFilters(state)[column] ?? 0] + column, value: column, align: "center", width: columnWidth, type: "default" });
     }
-    if(columns.length) {
-      columns[0].align = 'start';
+
+    let special = undefined;
+    if((special = columns.find(col => col.value === "NIST SP 800-53 Control"))) {
+      special.text = special.value;
+      special.align = 'start';
     }
+    if((special = columns.find(col => col.value === "ALL"))) {
+      special.type = 'check';
+    }
+
     return columns;
   }
 };
@@ -54,6 +77,11 @@ const mutations = {
   },
   setProfileFilters(state, filters) {
     state.profileFilters = filters;
+  },
+  updateColumnFilters(state, column) {
+    if(column !== "NIST SP 800-53 Control") {
+      state.columnFilters[column] = (state.columnFilters[column]+1)%3;
+    }
   },
 };
 
