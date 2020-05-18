@@ -33,8 +33,8 @@
     </v-row>
   </v-container>
   <c-grid class="table ma-0" :data="data" :frozen-col-count="2" :theme="this.$vuetify.theme.dark ? userTheme : ''" :underlay-background-color="this.$vuetify.theme.dark ? 'black' : 'white'">
-    <c-grid-column-group v-for="(col, index) in columns" :key="col.value" :header-field="col.value" :caption="col.text" :header-action="'check'" @changed-header-value="onChangeHeaderValue">
-      <c-grid-column :field="col.value" :caption="index >= 0 ? data.filter(control => control[col.value]).length.toString() : ''" :width="col.width" :column-type="col.type"/>
+    <c-grid-column-group v-for="col in columns" :key="col.value" :header-field="col.value" :caption="col.text" :header-action="'check'" @changed-header-value="onChangeHeaderValue">
+      <c-grid-column :field="col.value" :caption="data.filter(control => control[col.value]).length.toString()" :width="col.width" :column-type="col.type"/>
     </c-grid-column-group>
   </c-grid>
 </div>
