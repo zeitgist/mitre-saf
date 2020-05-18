@@ -19,9 +19,9 @@
     light + dark mode
 */
 <template>
-<div class="myowndamnwrapper">
-  <h1>Control Table</h1>
-  <v-container>
+<div class="wrapper" >
+
+  <v-container >
     <v-row>
       <v-col>
         <v-combobox v-model="controlFilters" clearable deletable-chips dense :filter="caselessFilter" hide-selected :hint="'If you can see this hint, it probably means you\'re typing a filter that won\'t work'" :items="[{ header: 'Select an option or type one and hit enter' }].concat(controls)" :label="'Control filters'" multiple small-chips/>
@@ -32,7 +32,7 @@
       </v-col>
     </v-row>
   </v-container>
-  <c-grid class="myowndamntable" :data="data" :frozen-col-count="2">
+  <c-grid class="table ma-0" :data="data" :frozen-col-count="2" :theme="this.$vuetify.theme.dark ? userTheme : ''" :underlay-background-color="this.$vuetify.theme.dark ? 'black' : 'white'">
     <c-grid-column-group v-for="(col, index) in columns" :key="col.value" :caption="col.text">
       <c-grid-column :field="col.value" :caption="index >= 1 ? data.filter(control => control[col.value]).length.toString() : ''" :width="col.width"/>
     </c-grid-column-group>
@@ -52,6 +52,22 @@ export default {
   },
   data() {
     return {
+      userTheme: {
+        color: 'white',
+        defaultBgColor: '#212121',
+        frozenRowsColor: 'white',
+        frozenRowsBgColor: '#212121',
+        borderColor: '#35495e',
+        frozenRowsBorderColor: '#35495e',
+        checkbox: {
+          checkBgColor: '#35495e',
+          borderColor: '#35495e',
+        },
+        button: {
+          color: '#FFF',
+          bgColor: '#2c3e50',
+        },
+      }
     };
   },
   computed: {
@@ -104,11 +120,11 @@ body {
   width: 100%;
   margin: 0;
 
-  .myowndamnwrapper {
+  .wrapper {
     width: 100%;
     height: 98vh;
 
-    .myowndamntable {
+    .table {
       height: 90%;
       color: white;
     }

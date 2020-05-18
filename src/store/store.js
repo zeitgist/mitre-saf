@@ -22,8 +22,8 @@ export default new Vuex.Store({
       },
       {
         text: "Control Assessment Range",
-        to: "/controlTable",
-        icon: "mdi-home",
+        to: "/control-table",
+        icon: "mdi-check",
         meta: {
           showToolbar: true,
           enabled: true,
