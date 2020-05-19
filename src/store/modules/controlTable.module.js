@@ -1,6 +1,8 @@
 // import Vue from 'vue'; // have to import for Vue.set when need to add new properties and reactivity stuff
 
-import json from "@/assets/data/mitre-saf-control-mapping.json";
+import _json from "@/assets/data/mitre-saf-control-mapping.json";
+
+const json = Object.freeze(_json);
 
 const state = {
   controlFilters: [],
