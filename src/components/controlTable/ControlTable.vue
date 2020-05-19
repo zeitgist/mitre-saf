@@ -24,11 +24,11 @@
   <v-container >
     <v-row>
       <v-col>
-        <v-combobox v-model="controlFilters" clearable deletable-chips dense :filter="caselessFilter" hide-selected :hint="'If you can see this hint, it probably means you\'re typing a filter that won\'t work'" :items="[{ header: 'Select an option or type one and hit enter' }].concat(controls)" :label="'Control Row Filter'" multiple small-chips/>
+        <v-combobox v-model="controlFilters" clearable deletable-chips dense :filter="caselessFilter" hide-selected :hint="'If you can see this hint, it probably means you\'re typing a filter that won\'t work'" :items="[{ header: 'Select an option or type one and hit enter' }].concat(controls)" :label="'Control Row Filter'" :menu-props="'auto'" multiple small-chips/>
       </v-col>
       <v-spacer/>
       <v-col>
-        <v-combobox v-model="profileFilters" clearable deletable-chips dense :filter="caselessFilter" hide-selected :hint="'If you can see this hint, it probably means you\'re typing a filter that won\'t work'" :items="[{ header: 'Select an option or type one and hit enter' }].concat(profiles)" :label="'Assessment Column Filter'" multiple small-chips/>
+        <v-combobox v-model="profileFilters" clearable deletable-chips dense :filter="caselessFilter" hide-selected :hint="'If you can see this hint, it probably means you\'re typing a filter that won\'t work'" :items="[{ header: 'Select an option or type one and hit enter' }].concat(profiles)" :label="'Assessment Column Filter'" :menu-props="'auto'" multiple small-chips/>
       </v-col>
     </v-row>
   </v-container>
