@@ -74,6 +74,7 @@ const getters = {
     }
     let all = undefined;
     if((all = columns.find(col => col.value === "ALL"))) {
+      all.text = 'Total Assessment Range';
       all.type = 'check';
       all.field = (rec) => rec[all.value];
     }
