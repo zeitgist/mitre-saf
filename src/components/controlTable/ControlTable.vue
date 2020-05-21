@@ -66,22 +66,62 @@
       :frozen-col-count="2"
       :theme="this.$vuetify.theme.dark ? darkTheme : lightTheme"
       :underlay-background-color="this.$vuetify.theme.dark ? 'black' : 'white'"
+      :headerRowHeight="[60,15,20]"
+      :defaultRowHeight="20"
+      :defaultColWidth="150"
     >
-      <c-grid-column-group
-        v-for="(col, index) in columns"
-        :key="index"
-        :header-field="col.value"
-        :caption="col.text"
-        :header-action="'check'"
-        @changed-header-value="onChangeHeaderValue"
-      >
-        <c-grid-column
-          :field="col.field"
-          :caption="data.filter(control => control[col.value]).length.toString()"
+    <template slot="layout-header">
+      <c-grid-layout-row>
+        <c-grid-header
+          v-for="(col, index) of columns"
+          :key="col.value"
           :width="col.width"
+          :header-field="col.value"
+          :header-type="'multilinetext'"
+          :header-style="{ autoWrapText: true, textAlign: 'center' }"
+          :header-action="index === 0 ? 'noop' : 'check'"
+          @changed-header-value="onChangeHeaderValue"
+          :rowspan="col.checkmark ? 1 : 2"
+        >
+          {{col.text}}
+        </c-grid-header>
+      </c-grid-layout-row>
+      <c-grid-layout-row>
+        <c-grid-header
+          v-for="col of columns.filter(c => c.checkmark)"
+          :key="col.value"
+          :header-field="col.value"
+          :header-style="{ textAlign: 'center' }"
+          :header-action="'check'"
+          @changed-header-value="onChangeHeaderValue"
+        >
+          {{col.checkmark}}
+        </c-grid-header>
+      </c-grid-layout-row>
+      <c-grid-layout-row>
+        <c-grid-header
+          v-for="col of columns"
+          :key="col.value"
+          :header-field="col.value"
+          :header-style="{ textAlign: 'center' }"
+          :header-action="'check'"
+          @changed-header-value="onChangeHeaderValue"
+        >
+          {{data.filter(control => control[col.value]).length.toString()}}
+        </c-grid-header>
+      </c-grid-layout-row>
+    </template>
+    <template slot="layout-body">
+      <c-grid-layout-row>
+        <c-grid-column
+          v-for="col of columns"
+          :key="col.value"
+          :field="col.field"
           :column-type="col.type"
+          :column-style="{ textAlign: col.align }"
         />
-      </c-grid-column-group>
+      </c-grid-layout-row>
+    </template>
     </c-grid>
   </div>
 </template>
@@ -91,10 +131,12 @@ import { createNamespacedHelpers } from "vuex";
 import * as cGridAll from "vue-cheetah-grid";
 
 const { mapGetters, mapMutations } = createNamespacedHelpers("controlTable");
+
 const materialDesignTheme = cGridAll.cheetahGrid.themes.MATERIAL_DESIGN;
+
 export default {
   components: {
-    ...cGridAll
+    ...cGridAll,
   },
   data() {
     return {

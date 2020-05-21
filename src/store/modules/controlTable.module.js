@@ -54,24 +54,23 @@ const getters = {
       columnheaders = columnheaders.filter(col => ['NIST SP 800-53 Control', 'ALL'].includes(col) || filters.some(filter => col.toLowerCase().includes(filter.toLowerCase())));
     }
 
-    const columnWidth = 100;
     let columns = [];
     for(let column of columnheaders) {
       columns.push({
-        text: ["☒", "☑", "☐"][getters.getColumnFilters(state)[column] ?? 0] + column,
+        text: column,
         value: column,
         align: "center",
-        width: columnWidth,
         type: "default",
         field: (rec) => rec[column] ? "InSpec" : "",
+        checkmark: ["☒", "☑", "☐"][getters.getColumnFilters(state)[column] ?? 0],
       });
     }
 
     let controlNames = undefined;
     if((controlNames = columns.find(col => col.value === "NIST SP 800-53 Control"))) {
-      controlNames.text = controlNames.value;
       controlNames.align = 'start';
       controlNames.field = (rec) => rec[controlNames.value];
+      controlNames.checkmark = undefined;
     }
     let all = undefined;
     if((all = columns.find(col => col.value === "ALL"))) {
@@ -80,7 +79,7 @@ const getters = {
     }
     let heimdall = undefined;
     if((heimdall = columns.find(col => col.value === "CWE tool data mapped by Heimdall_tools"))) {
-      heimdall.field = (rec) => rec[heimdall.value] ? "SonarQ, ZAP, Burp" : "";
+      heimdall.field = (rec) => rec[heimdall.value] ? "SonarQube, ZAP, Burp" : "";
     }
 
     return columns;
