@@ -70,58 +70,58 @@
       :defaultRowHeight="20"
       :defaultColWidth="150"
     >
-    <template slot="layout-header">
-      <c-grid-layout-row>
-        <c-grid-header
-          v-for="(col, index) of columns"
-          :key="col.value"
-          :width="col.width"
-          :header-field="col.value"
-          :header-type="'multilinetext'"
-          :header-style="{ autoWrapText: true, textAlign: 'center' }"
-          :header-action="index === 0 ? 'noop' : 'check'"
-          @changed-header-value="onChangeHeaderValue"
-          :rowspan="col.checkmark ? 1 : 2"
-        >
-          {{col.text}}
-        </c-grid-header>
-      </c-grid-layout-row>
-      <c-grid-layout-row>
-        <c-grid-header
-          v-for="col of columns.filter(c => c.checkmark)"
-          :key="col.value"
-          :header-field="col.value"
-          :header-style="{ textAlign: 'center' }"
-          :header-action="'check'"
-          @changed-header-value="onChangeHeaderValue"
-        >
-          {{col.checkmark}}
-        </c-grid-header>
-      </c-grid-layout-row>
-      <c-grid-layout-row>
-        <c-grid-header
-          v-for="col of columns"
-          :key="col.value"
-          :header-field="col.value"
-          :header-style="{ textAlign: 'center' }"
-          :header-action="'check'"
-          @changed-header-value="onChangeHeaderValue"
-        >
-          {{data.filter(control => control[col.value]).length.toString()}}
-        </c-grid-header>
-      </c-grid-layout-row>
-    </template>
-    <template slot="layout-body">
-      <c-grid-layout-row>
-        <c-grid-column
-          v-for="col of columns"
-          :key="col.value"
-          :field="col.field"
-          :column-type="col.type"
-          :column-style="{ textAlign: col.align }"
-        />
-      </c-grid-layout-row>
-    </template>
+      <template slot="layout-header">
+        <c-grid-layout-row>
+          <c-grid-header
+            v-for="(col, index) of columns"
+            :key="col.value"
+            :width="col.width"
+            :header-field="col.value"
+            :header-type="'multilinetext'"
+            :header-style="{ autoWrapText: true, textAlign: 'center' }"
+            :header-action="index === 0 ? 'noop' : 'check'"
+            @changed-header-value="onChangeHeaderValue"
+            :rowspan="col.checkmark ? 1 : 2"
+          >
+            {{col.text}}
+          </c-grid-header>
+        </c-grid-layout-row>
+        <c-grid-layout-row>
+          <c-grid-header
+            v-for="col of columns.filter(c => c.checkmark)"
+            :key="col.value"
+            :header-field="col.value"
+            :header-style="{ textAlign: 'center' }"
+            :header-action="'check'"
+            @changed-header-value="onChangeHeaderValue"
+          >
+            {{col.checkmark}}
+          </c-grid-header>
+        </c-grid-layout-row>
+        <c-grid-layout-row>
+          <c-grid-header
+            v-for="col of columns"
+            :key="col.value"
+            :header-field="col.value"
+            :header-style="{ textAlign: 'center' }"
+            :header-action="'check'"
+            @changed-header-value="onChangeHeaderValue"
+          >
+            {{data.filter(control => control[col.value]).length.toString()}}
+          </c-grid-header>
+        </c-grid-layout-row>
+      </template>
+      <template slot="layout-body">
+        <c-grid-layout-row>
+          <c-grid-column
+            v-for="col of columns"
+            :key="col.value"
+            :field="col.field"
+            :column-type="col.type"
+            :column-style="{ textAlign: col.align }"
+          />
+        </c-grid-layout-row>
+      </template>
     </c-grid>
   </div>
 </template>
@@ -140,14 +140,14 @@ export default {
   },
   data() {
     return {
-      lightTheme : materialDesignTheme.extends({
-        color: 'black',
-        defaultBgColor({row}) {
+      lightTheme: materialDesignTheme.extends({
+        color: "black",
+        defaultBgColor({ row }) {
           // change the color of the checked row.
           if ((row + 1) % 2) {
-            return 'white';
+            return "white";
           } else {
-            return '#BDBDBD';
+            return "#BDBDBD";
           }
         },
         borderColor: "#35495e",
@@ -157,12 +157,12 @@ export default {
       }),
       darkTheme: {
         color: "white",
-        defaultBgColor({row}) {
+        defaultBgColor({ row }) {
           // change the color of the checked row.
           if ((row + 1) % 2) {
-            return '#424242';
+            return "#424242";
           } else {
-            return '#212121';
+            return "#212121";
           }
         },
         frozenRowsColor: "white",

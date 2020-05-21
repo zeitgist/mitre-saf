@@ -11,7 +11,7 @@
           <Header>
             <h3 slot="title">Control Assessment Range</h3>
             <p slot="subtitle">
-              SAF profiles are designed to cover NIST SP 800-53 Security Controls. See here to learn which profiles cover which controls.
+              All assessment tests under SAF are associated with NIST SP 800-53 Security Controls. Explore these associations in the table below!
             </p>
           </Header>
         </v-col>
