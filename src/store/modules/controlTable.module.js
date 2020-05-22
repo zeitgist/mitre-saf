@@ -70,7 +70,7 @@ const getters = {
     if((controlNames = columns.find(col => col.value === "NIST SP 800-53 Control"))) {
       controlNames.align = 'start';
       controlNames.field = (rec) => rec[controlNames.value];
-      controlNames.checkmark = undefined;
+      controlNames.checkmark = "RESET";
       controlNames.width = 100;
     }
     let all = undefined;
@@ -98,7 +98,11 @@ const mutations = {
     state.profileFilters = filters;
   },
   updateColumnFilters(state, column) {
-    if(column !== "NIST SP 800-53 Control") {
+    if(column === "NIST SP 800-53 Control") {
+      for(let col of Object.keys(state.columnFilters)) {
+        state.columnFilters[col] = 0;
+      }
+    } else {
       state.columnFilters[column] = (state.columnFilters[column]+1)%3;
     }
   },

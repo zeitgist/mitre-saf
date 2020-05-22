@@ -73,13 +73,13 @@
       <template slot="layout-header">
         <c-grid-layout-row>
           <c-grid-header
-            v-for="(col, index) of columns"
+            v-for="col of columns"
             :key="col.value"
             :width="col.width ? col.width : undefined"
             :header-field="col.value"
             :header-type="'multilinetext'"
             :header-style="{ autoWrapText: true, textAlign: 'center' }"
-            :header-action="index === 0 ? undefined : 'check'"
+            :header-action="'check'"
             @changed-header-value="onChangeHeaderValue"
           >
             {{col.text}}
@@ -87,12 +87,12 @@
         </c-grid-layout-row>
         <c-grid-layout-row>
           <c-grid-header
-            v-for="(col, index) of columns"
+            v-for="col of columns"
             :key="col.value"
             :width="col.width ? col.width : undefined"
             :header-field="col.value"
             :header-style="{ textAlign: 'center' }"
-            :header-action="index === 0 ? undefined : 'check'"
+            :header-action="'check'"
             @changed-header-value="onChangeHeaderValue"
           >
             {{col.checkmark}}
@@ -100,12 +100,12 @@
         </c-grid-layout-row>
         <c-grid-layout-row>
           <c-grid-header
-            v-for="(col, index) of columns"
+            v-for="col of columns"
             :key="col.value"
             :width="col.width ? col.width : undefined"
             :header-field="col.value"
             :header-style="{ textAlign: 'center' }"
-            :header-action="index === 0 ? undefined : 'check'"
+            :header-action="'check'"
             @changed-header-value="onChangeHeaderValue"
           >
             {{data.filter(control => control[col.value]).length.toString()}}
