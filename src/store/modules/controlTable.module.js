@@ -71,16 +71,19 @@ const getters = {
       controlNames.align = 'start';
       controlNames.field = (rec) => rec[controlNames.value];
       controlNames.checkmark = undefined;
+      controlNames.width = 100;
     }
     let all = undefined;
     if((all = columns.find(col => col.value === "ALL"))) {
       all.text = 'Total Assessment Range';
       all.type = 'check';
       all.field = (rec) => rec[all.value];
+      all.width = 100;
     }
     let heimdall = undefined;
     if((heimdall = columns.find(col => col.value === "CWE tool data mapped by Heimdall_tools"))) {
       heimdall.field = (rec) => rec[heimdall.value] ? "SonarQ, Fortify, ZAP, Burp" : "";
+      heimdall.width = 200;
     }
 
     return columns;

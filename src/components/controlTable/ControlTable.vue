@@ -66,33 +66,33 @@
       :frozen-col-count="2"
       :theme="this.$vuetify.theme.dark ? darkTheme : lightTheme"
       :underlay-background-color="this.$vuetify.theme.dark ? 'black' : 'white'"
-      :headerRowHeight="[60,15,20]"
+      :headerRowHeight="[70,15,20]"
       :defaultRowHeight="20"
-      :defaultColWidth="150"
+      :defaultColWidth="130"
     >
       <template slot="layout-header">
         <c-grid-layout-row>
           <c-grid-header
             v-for="(col, index) of columns"
             :key="col.value"
-            :width="col.width"
+            :width="col.width ? col.width : undefined"
             :header-field="col.value"
             :header-type="'multilinetext'"
             :header-style="{ autoWrapText: true, textAlign: 'center' }"
-            :header-action="index === 0 ? 'noop' : 'check'"
+            :header-action="index === 0 ? undefined : 'check'"
             @changed-header-value="onChangeHeaderValue"
-            :rowspan="col.checkmark ? 1 : 2"
           >
             {{col.text}}
           </c-grid-header>
         </c-grid-layout-row>
         <c-grid-layout-row>
           <c-grid-header
-            v-for="col of columns.filter(c => c.checkmark)"
+            v-for="(col, index) of columns"
             :key="col.value"
+            :width="col.width ? col.width : undefined"
             :header-field="col.value"
             :header-style="{ textAlign: 'center' }"
-            :header-action="'check'"
+            :header-action="index === 0 ? undefined : 'check'"
             @changed-header-value="onChangeHeaderValue"
           >
             {{col.checkmark}}
@@ -100,11 +100,12 @@
         </c-grid-layout-row>
         <c-grid-layout-row>
           <c-grid-header
-            v-for="col of columns"
+            v-for="(col, index) of columns"
             :key="col.value"
+            :width="col.width ? col.width : undefined"
             :header-field="col.value"
             :header-style="{ textAlign: 'center' }"
-            :header-action="'check'"
+            :header-action="index === 0 ? undefined : 'check'"
             @changed-header-value="onChangeHeaderValue"
           >
             {{data.filter(control => control[col.value]).length.toString()}}
