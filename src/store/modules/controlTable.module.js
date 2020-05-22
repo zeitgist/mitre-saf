@@ -80,7 +80,7 @@ const getters = {
     }
     let heimdall = undefined;
     if((heimdall = columns.find(col => col.value === "CWE tool data mapped by Heimdall_tools"))) {
-      heimdall.field = (rec) => rec[heimdall.value] ? "SonarQube, ZAP, Burp" : "";
+      heimdall.field = (rec) => rec[heimdall.value] ? "SonarQ, Fortify, ZAP, Burp" : "";
     }
 
     return columns;
