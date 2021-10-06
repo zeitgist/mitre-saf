@@ -6,7 +6,7 @@
   "copyright_email": ".",
   "summary": "InSpec Validation Profile for AWS RDS Mysql server enterprise edition 5.7 CIS",
   "license": "Apache-2.0",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "inspec_version": ">= 4.0",
   "depends": [
     {
@@ -285,7 +285,7 @@
         "check": "Review all cryptographic material and check to see if any of it is default or is used for other MySQL instances or for purposes other than MySQL",
         "fix": "Generate new certificates, keys, and other cryptographic material as needed for each affected MySQL instance"
       },
-      "code": "control '2.4' do\n  title 'Do Not Use Default or Shared Cryptographic Material (Not Scored)'\n  desc  \"The cryptographic material used by MySQL, such as digital certificates and encryption keys, should be used only for MySQL and only for one instance.\n  Default cryptographic material should not be used because others are likely to have copies of them\"\n  impact 0.5\n  tag \"severity\": 'medium'\n  tag \"cis_id\": '2.4'\n  tag \"cis_level\": 2\n  tag \"nist\": ['IA-5(2)', 'Rev_4']\n  tag \"Profile Applicability\": 'Level 2 - MySQL RDBMS on Linux'\n  tag \"check\": 'Review all cryptographic material and check to see if any of it is default or is used for other MySQL instances or for purposes other than MySQL'\n  tag \"fix\": 'Generate new certificates, keys, and other cryptographic material as needed for each affected MySQL instance'\n  describe 'A manual review is required to ensure the default or shared cryptographic material is not being used' do\n    skip 'A manual review is required to ensure the default or shared cryptographic material is not being used'\n  end\n  only_if { os.linux? }\nend\n",
+      "code": "control '2.4' do\n  title 'Do Not Use Default or Shared Cryptographic Material (Not Scored)'\n  desc  \"The cryptographic material used by MySQL, such as digital certificates and encryption keys, should be used only for MySQL and only for one instance.\n  Default cryptographic material should not be used because others are likely to have copies of them\"\n  impact 0.5\n  tag \"severity\": 'medium'\n  tag \"cis_id\": '2.4'\n  tag \"cis_level\": 2\n  tag \"nist\": ['IA-5(2)', 'Rev_4']\n  tag \"Profile Applicability\": 'Level 2 - MySQL RDBMS on Linux'\n  tag \"check\": 'Review all cryptographic material and check to see if any of it is default or is used for other MySQL instances or for purposes other than MySQL'\n  tag \"fix\": 'Generate new certificates, keys, and other cryptographic material as needed for each affected MySQL instance'\n  describe 'A manual review is required to ensure the default or shared cryptographic material is not being used' do\n    skip 'A manual review is required to ensure the default or shared cryptographic material is not being used'\n  end\nend\n",
       "source_location": {
         "ref": "oracle-mysql-ee-5.7-cis-baseline-master/controls/2.4.rb",
         "line": 1
@@ -591,7 +591,7 @@
         "check": "\n  Execute the following SQL statement to identify the MySQL server version:\n    SHOW VARIABLES WHERE Variable_name LIKE 'version';\n  Now compare the version with the security announcements from Oracle and/or the OS if the OS packages are used",
         "fix": "Install the latest patches for your version or upgrade to the latest version"
       },
-      "code": "control '4.1' do\n  title '4.1 Ensure Latest Security Patches Are Applied (Not Scored)'\n  desc  \"Periodically, updates to MySQL server are released to resolve bugs, mitigate vulnerabilities, and provide new features.\n  It is recommended that MySQL installations are up to date with the latest security updates\"\n  impact 0.5\n  tag \"severity\": 'medium'\n  tag \"cis_id\": '4.1'\n  tag \"cis_level\": 1\n  tag \"nist\": ['SI-2', 'Rev_4']\n  tag \"Profile Applicability\": 'Level 1 - MySQL RDBMS on Linux'\n  tag \"check\": \"\n  Execute the following SQL statement to identify the MySQL server version:\n    SHOW VARIABLES WHERE Variable_name LIKE 'version';\n  Now compare the version with the security announcements from Oracle and/or the OS if the OS packages are used\"\n  tag \"fix\": 'Install the latest patches for your version or upgrade to the latest version'\n  query = %{select @@version;}\n  sql_session = mysql_session(attribute('user'), attribute('password'), attribute('host'), attribute('port'))\n\n  mysql_version = sql_session.query(query).stdout.strip\n\n  describe \"The mysql version installed: #{mysql_version}\" do\n    subject { mysql_version }\n    it { should cmp >= input('approved_mysql_version') }\n  end\n  only_if { os.linux? }\nend\n",
+      "code": "control '4.1' do\n  title '4.1 Ensure Latest Security Patches Are Applied (Not Scored)'\n  desc  \"Periodically, updates to MySQL server are released to resolve bugs, mitigate vulnerabilities, and provide new features.\n  It is recommended that MySQL installations are up to date with the latest security updates\"\n  impact 0.5\n  tag \"severity\": 'medium'\n  tag \"cis_id\": '4.1'\n  tag \"cis_level\": 1\n  tag \"nist\": ['SI-2', 'Rev_4']\n  tag \"Profile Applicability\": 'Level 1 - MySQL RDBMS on Linux'\n  tag \"check\": \"\n  Execute the following SQL statement to identify the MySQL server version:\n    SHOW VARIABLES WHERE Variable_name LIKE 'version';\n  Now compare the version with the security announcements from Oracle and/or the OS if the OS packages are used\"\n  tag \"fix\": 'Install the latest patches for your version or upgrade to the latest version'\n  query = %{select @@version;}\n  sql_session = mysql_session(attribute('user'), attribute('password'), attribute('host'), attribute('port'))\n\n  mysql_version = sql_session.query(query).stdout.strip\n  safe_mysql_version = mysql_version.scan(/\\d\\.*/).join\n  describe \"The mysql version installed: #{mysql_version}\" do\n    subject { safe_mysql_version }\n    it { should cmp >= input('approved_mysql_version') }\n  end\nend\n",
       "source_location": {
         "ref": "oracle-mysql-ee-5.7-cis-baseline-master/controls/4.1.rb",
         "line": 1
@@ -1568,11 +1568,7 @@
         "default": "Blank passwords allow a user to login without using a password."
       },
       "impact": 0.5,
-      "refs": [
-        {
-          "ref": []
-        }
-      ],
+      "refs": [],
       "tags": {
         "severity": "medium",
         "cis_id": "7.5",
@@ -1582,10 +1578,10 @@
           "Rev_4"
         ],
         "Profile Applicability": "Level 2 - MySQL RDBMS",
-        "check": "Execute the following SQL query to determine if any users have a blank password:\n        SELECT user,host \n        FROM mysql.user \n        WHERE (plugin IN('mysql_native_password', 'mysql_old_password') \n          AND LENGTH(password) = 0 AND LENGTH(authentication_string) = 0);\n    No rows will be returned if all accounts have a password set.",
+        "check": "Execute the following SQL query to determine if any users have a blank password:\n      SELECT User,host\n      FROM mysql.user\n      WHERE (plugin IN('mysql_native_password', 'mysql_old_password')\n        AND (LENGTH(authentication_string) = 0\n        OR authentication_string IS NULL))\n        OR (plugin='sha256_password' AND LENGTH(authentication_string) = 0);\n  No rows will be returned if all accounts have a password set.",
         "fix": "or each row returned from the audit procedure, set a password for the given user using the following statement (as an example):\n  SET PASSWORD FOR <user>@'<host>' = PASSWORD('<clear password>')\n  NOTE: Replace <user>, <host>, and <clear password> with appropriate values."
       },
-      "code": "  control '7.5' do\n    tag \"check\": \"Execute the following SQL query to determine if any users have a blank password:\n        SELECT user,host \n        FROM mysql.user \n        WHERE (plugin IN('mysql_native_password', 'mysql_old_password') \n          AND LENGTH(password) = 0 AND LENGTH(authentication_string) = 0);\n    No rows will be returned if all accounts have a password set.\"\n\n    query = %{SELECT user,host FROM mysql.user WHERE (plugin IN('mysql_native_password', 'mysql_old_password') AND LENGTH(password) = 0 AND LENGTH(authentication_string) = 0);}\n    sql_session = mysql_session(attribute('user'), attribute('password'), attribute('host'), attribute('port'))\n    users_with_blank_passwords = sql_session.query(query).stdout.strip\n\n    describe 'The MySQL users with blank passwords' do\n      subject { users_with_blank_passwords }\n      it { should be_empty }\n    end\n  end\n",
+      "code": "control '7.5' do\n  title 'Ensure Passwords Are Set for All MySQL Accounts (Scored)'\n  desc  'Blank passwords allow a user to login without using a password.'\n  impact 0.5\n  tag \"severity\": 'medium'\n  tag \"cis_id\": '7.5'\n  tag \"cis_level\": 1\n  tag \"cis_level\": 2\n  tag \"nist\": ['IA-5(1)', 'Rev_4']\n  tag \"Profile Applicability\": 'Level 1 - MySQL RDBMS'\n  tag \"Profile Applicability\": 'Level 2 - MySQL RDBMS'\n  tag \"check\": \"Execute the following SQL query to determine if any users have a blank password:\n      SELECT User,host\n      FROM mysql.user\n      WHERE (plugin IN('mysql_native_password', 'mysql_old_password')\n        AND (LENGTH(authentication_string) = 0\n        OR authentication_string IS NULL))\n        OR (plugin='sha256_password' AND LENGTH(authentication_string) = 0);\n  No rows will be returned if all accounts have a password set.\"\n  tag \"fix\": \"or each row returned from the audit procedure, set a password for the given user using the following statement (as an example):\n  SET PASSWORD FOR <user>@'<host>' = PASSWORD('<clear password>')\n  NOTE: Replace <user>, <host>, and <clear password> with appropriate values.\"\n\n  query = %{SELECT User,host\n      FROM mysql.user\n      WHERE (plugin IN('mysql_native_password', 'mysql_old_password')\n        AND (LENGTH(authentication_string) = 0\n        OR authentication_string IS NULL))\n        OR (plugin='sha256_password' AND LENGTH(authentication_string) = 0);}\n  sql_session = mysql_session(attribute('user'), attribute('password'), attribute('host'), attribute('port'))\n  users_with_blank_passwords = sql_session.query(query).stdout.strip\n\n  describe 'The MySQL users with blank passwords' do\n    subject { users_with_blank_passwords }\n    it { should be_empty }\n  end\nend\n",
       "source_location": {
         "ref": "oracle-mysql-ee-5.7-cis-baseline-master/controls/7.5.rb",
         "line": 1
@@ -2321,7 +2317,7 @@
       "id": "oracle-mysql-ee-5.7-cis-baseline-master/controls/9.5.rb"
     }
   ],
-  "sha256": "c24ee5f627468d3deaed268059ea0af1e52fc3f4cb417005018df65901cbc983",
+  "sha256": "9e0bea240025572f869f65d021ac88a93072551fbeb0f57a440752a6c3e450fb",
   "status_message": "",
   "status": "loaded",
   "generator": {
