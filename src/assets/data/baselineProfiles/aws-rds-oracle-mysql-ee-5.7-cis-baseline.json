@@ -2317,7 +2317,7 @@
       "id": "oracle-mysql-ee-5.7-cis-baseline-master/controls/9.5.rb"
     }
   ],
-  "sha256": "9e0bea240025572f869f65d021ac88a93072551fbeb0f57a440752a6c3e450fb",
+  "sha256": "bf3649fcbde86f29fdeb4f61745f6656ab558ba4c8afb10d041d7e25f7489765",
   "status_message": "",
   "status": "loaded",
   "generator": {
