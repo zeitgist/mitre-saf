@@ -6,7 +6,7 @@
   "copyright_email": "saf@groups.mitre.org",
   "license": "Apache-2.0",
   "summary": "Inspec Validation Profile for MongoDB Enterprise Advanced 3.x STIG",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "inspec_version": ">= 4.0",
   "inputs": [],
   "supports": [],
@@ -1928,7 +1928,7 @@
       "id": "controls/V-81857.rb"
     }
   ],
-  "sha256": "05c56cf12652048123fbdbaf5ebdddd90e55e9db24b315fd0b399ceacf8c9bd7",
+  "sha256": "500096a5973bc1e93daf05fe2f1ff6242be4085d090f219eb329d031094e7496",
   "status_message": "",
   "status": "loaded",
   "generator": {
