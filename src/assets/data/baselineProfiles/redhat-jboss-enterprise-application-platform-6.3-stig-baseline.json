@@ -7,7 +7,7 @@
   "license": "Apache-2.0",
   "summary": "InSpec Validation Profile for JBOSS Wildfly EAP 6.3 STIG",
   "description": "An InSpec profile verifying STIG compliance with JBOSS EAP STIG http://iasecontent.disa.mil/stigs/zip/U_JBoss_EAP_6-3_V1R2_STIG.zip with modifications for Wildfly\n",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "inspec_version": ">= 4.0",
   "inputs": [],
   "supports": [],
@@ -2628,7 +2628,7 @@
       "id": "controls/V-62313.rb"
     }
   ],
-  "sha256": "82e3f961d53230ca4e67a5c00e4dab338b7c8f3d260b07fcc9d3bc865052a95e",
+  "sha256": "b9afbc3bc88efdb3027487daf658d017a2d314e53000b42e11e52953c12e2243",
   "status_message": "",
   "status": "loaded",
   "generator": {
