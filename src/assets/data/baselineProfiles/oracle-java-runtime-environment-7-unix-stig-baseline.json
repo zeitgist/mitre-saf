@@ -6,7 +6,7 @@
   "copyright_email": "opensource@mitre.org",
   "summary": "Inspec Validation Profile for JRE 7 STIG",
   "license": "Apache-2.0",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "inspec_version": ">= 4.0",
   "supports": [
     {
@@ -414,7 +414,7 @@
       "id": "controls/V-32833.rb"
     }
   ],
-  "sha256": "b29e675045754dd9031fedbe5b2e78b0de83fcdaf7e1995aca40c6d4c1a0eafb",
+  "sha256": "a17fdf711edee8805130b987daf425b8083cba839b0321f7d828bdf367245512",
   "status_message": "",
   "status": "loaded",
   "generator": {

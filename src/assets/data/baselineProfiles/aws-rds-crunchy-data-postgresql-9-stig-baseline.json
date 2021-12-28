@@ -5782,7 +5782,7 @@
       "id": "pgstigcheck-inspec-master/controls/V-73123.rb"
     }
   ],
-  "sha256": "823ef544f49c6ab18fe3d663f525485e5816a72113bed4b1d6a90cae9ee4ab26",
+  "sha256": "15553a41f74e89860e843652e61cde4a2c0e2eef7718d5d5ca2f56568e06293a",
   "status_message": "",
   "status": "loaded",
   "generator": {
