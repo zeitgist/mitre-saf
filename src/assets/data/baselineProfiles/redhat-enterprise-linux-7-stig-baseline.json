@@ -16,6 +16,10 @@
     {
       "platform-name": "redhat",
       "release": "7.*"
+    },
+    {
+      "platform-name": "amazon",
+      "release": "2*"
     }
   ],
   "inputs": [],
@@ -10394,7 +10398,7 @@
       "id": "controls/V-72001.rb"
     }
   ],
-  "sha256": "6fa03b9ff934febdaa4247039f6ea2357c58f6d2e0e573c7681ffb366ad41d68",
+  "sha256": "0e34b7f61c2956ef6d32329b636873bedc423b2546b13a830a9d2c9e5b0660f9",
   "status_message": "",
   "status": "loaded",
   "generator": {
